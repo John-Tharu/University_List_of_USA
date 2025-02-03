@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Universities in USA</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <div class="container">
+        <h1>List of Universities in USA</h1>
+        <div class="box" id="box">
+            <div class="card">
+                <h2>Name : Standford University</h2>
+                <p>Web Page : www.st.com</p>
+                <p>Country : USA</p>
+            </div>
+            <div class="card">
+                <h2>Name : Standford University</h2>
+                <p>Web Page : www.st.com</p>
+                <p>Country : USA</p>
+            </div>
+            <div class="card">
+                <h2>Name : Standford University</h2>
+                <p>Web Page : www.st.com</p>
+                <p>Country : USA</p>
+            </div>
+            <div class="card">
+                <h2>Name : Standford University</h2>
+                <p>Web Page : www.st.com</p>
+                <p>Country : USA</p>
+            </div>
+            <div class="card">
+                <h2>Name : Standford University</h2>
+                <p>Web Page : www.st.com</p>
+                <p>Country : USA</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        const showdata =async ()=>{
+            try {
+                const data = await fetch('/data');
+                const response = await data.json();
+                const cards = document.getElementById('box');
+                cards.innerHTML = '';
+                response.forEach(university=>{
+                    const card = document.createElement('div');
+                    card.classList.add('card');
+                    card.innerHTML = `<h2>Name : ${university.name}</h2><p>Web Page : <a href='${university.web_pages[0]}' target='_blank'>${university.web_pages[0]}</a></p><p>Country : ${university.country}</p>`;
+                    cards.appendChild(card);
+                });
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        showdata();
+    </script>
+</body>
+</html>
